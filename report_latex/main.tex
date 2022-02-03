@@ -1,0 +1,432 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2019
+
+% ready for submission
+% \usepackage{neurips_2019}
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the 
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2019}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+\usepackage[]{neurips_2019}
+
+% to avoid loading the natbib package, add option nonatbib:
+%     \usepackage[nonatbib]{neurips_2019}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage[hidelinks,colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{float}
+\newif{\ifhidecomments}
+
+
+\title{Reproducibility report of \\CoSQA: 20,000+ Web Queries for Code Search and Question Answering \cite{huang-etal-2021-cosqa} \\for ML Reproducibility Challenge 2021}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+\author{%
+  David S.~Hippocampus\thanks{Use footnote for providing further information
+    about author (webpage, alternative address)---\emph{not} for acknowledging
+    funding agencies.} \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{\centering Reproducibility Summary}
+
+\subsection*{Abstract/Summary of the Original Paper \cite{huang-etal-2021-cosqa}}   
+The goal of the authors in the paper is finding relevant code pieces that matches a user's query. More specifically, they focused on two tasks, code question answering and code search. They gathered and used a new dataset named CoSQA  since for the described problem a richer and bigger dataset than the previous ones is needed. Additionally, they introduced CoCLR which incorporates code contrastive learning into the siamese network with CodeBERT \cite{feng2020codebert}. In code constrastive method the goal is to learn the word representations in a way that similar objects are as close as possible whereas the disimilar objects are kept as far as possible. Therefore, two augmentation methods were used, In-Batch Augmentation (IBA) and Query-Rewritten Augmentation (QRA). In conclusion, by using these models and dataset they achieved better quality inn query-code matching tasks.
+
+\subsection*{Scope of Reproducibility}
+
+\begin{itemize}
+
+    \item The main claim of the paper that we tried to reproduce is that the siamese network with CodeBERT  \cite{feng2020codebert} and CoCLR models improve overall performance on both tasks (code search and code question answering) by using the CoSQA dataset, particularly on the CodeXGLUE WebQueryTest \cite{DBLP:journals/corr/abs-2102-04664} \footnote{\hyperlink{}{https://github.com/microsoft/CodeXGLUE}}. Specifically, CoCLR increased the results by 15.6\% the WebQueryTest. 
+    
+    \item Therefore, in this work, we tried to show:
+    \begin{enumerate}
+        \item The performance of the siamese network with the CodeBert model on the CodeSearchNet + CoSQA as the training and testing dataset. To do that we used the same metrics as the paper that are accuracy for code question answering task and MRR for code search task.
+        
+        \item We performed previous experiments for the CoCLR (siamese network + CodeBERT using code constrastive learning) model as well.
+        
+        \item We trained CoCLR with different variations of augmentations (IBA and QRA) for code search task:
+        \begin{enumerate}
+            \item in-batch + query-rewritten (delete)
+            \item in-batch + query-rewritten (copy)
+            \item in-batch + query-rewritten (switch) 
+        \end{enumerate}
+        
+        \item We showed the performance of the CoCLR with various code componets on code search task:
+        \begin{enumerate}
+            \item complete code
+            \item header only
+            \item doc only
+            \item no header
+            \item no doc
+            \item no body
+        \end{enumerate}
+    \end{enumerate}
+\end{itemize}
+
+\subsection*{Methodology}
+
+\begin{itemize}
+    \item We used the authors' code provided on \href{https://github.com/Jun-jie-Huang/CoCLR}{Jun-jie-Huang's GitHub}. 
+    
+    \item Our hardware resource was GPU.RTX2060 Super.xlarge and the specifications is as below:
+        \begin{itemize}
+            \item RAM: 23.4GB
+            \item VCPUs: 6 VCPU
+            \item Disk: 200GB
+        \end{itemize}
+    \item We added ten bash files that includes all the experiments done by authors. These can be all be run by a single bash file which simplifies automating running process significantly.  
+    
+    \item The total budget in terms of GPU hours per task is as below:
+    \begin{table}[!h]
+        \centering
+        \begin{tabular}{c c c c}
+            \hline \\
+            \textbf{Task} & \textbf{Approximate time for each epoch} & \textbf{Number of epochs for training} & \textbf{Total approximate time} \\
+            \hline \\
+            Code Question Answering & 15 minutes & 10 &  2.5 hours \\ \medskip
+            Code Search & 30 minutes & 10 &  5 hour \\ 
+            \hline	
+        \end{tabular}\ 
+        \vspace{0.015\textheight}
+        \caption{GPU computation time}
+        \label{tab:gpu_time}
+    \end{table}
+\end{itemize}
+
+\subsection*{Results}
+
+The results are summarized in the below tables:
+\begin{itemize}
+    \item Overall results:
+    \begin{itemize}
+        \item Code Question Answering
+        \begin{itemize}
+            \item Test hyperparameters: 
+            \begin{itemize}
+                \item max\_seq\_length: 200
+                \item per\_gpu\_eval\_batch\_size: 2
+            \end{itemize}
+            
+            \item Train hyperparameters: 
+            \begin{itemize}
+                \item mmax\_seq\_length: 200
+                \item per\_gpu\_train\_batch\_size: 8
+                \item per\_gpu\_eval\_batch\_size: 16
+            \end{itemize}
+        \end{itemize}
+        
+        \item Code Search
+        \begin{itemize}
+            \item Test hyperparameters: 
+            \begin{itemize}
+                \item max\_seq\_length: 200
+                \item per\_gpu\_retrieval\_batch\_size: 67
+            \end{itemize}
+            
+            \item Train hyperparameters: 
+            \begin{itemize}
+                \item max\_seq\_length: 200
+                \item per\_gpu\_train\_batch\_size: 8
+                \item per\_gpu\_retrieval\_batch\_size: 67
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c c c}
+            \hline \\
+            \textbf{Model} & \textbf{Code Question Answering (Accuracy)} & \textbf{Code Search (MRR)} \\
+            \hline\hline \\
+            \medskip
+           CodeBERT (Paper's) & 52.87 & 54.41  \\ \medskip
+           CodeBERT + CoCLR (Paper's) & 63.38 & 64.66  \\
+           \hline\hline \\ 
+           \medskip
+           CodeBERT (Our's) & 46.75 & 54.60 \\ \medskip
+           CodeBERT + CoCLR (Our's) & 66.92  & 64.28 \\
+            \hline	
+        \end{tabular}\ 
+        \vspace{0.015\textheight}
+        \caption{Evaluation on two tasks. The data is CodeSearchNet + CoSQA.}
+        \label{tab:overall}
+    \end{table}
+    
+    \item Augmentation results:
+    \begin{itemize}
+        \item Test hyperparameters: 
+        \begin{itemize}
+            \item max\_seq\_length: 200
+            \item per\_gpu\_retrieval\_batch\_size: 67
+        \end{itemize}
+        
+        \item Train hyperparameters: 
+        \begin{itemize}
+            \item max\_seq\_length: 200
+            \item per\_gpu\_train\_batch\_size: 8
+            \item per\_gpu\_retrieval\_batch\_size: 67
+        \end{itemize}
+    \end{itemize}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c c c}
+            \hline \\
+            \textbf{Augmentations} & \textbf{Train (MRR)} & \textbf{Test (MRR)} \\
+            \hline\hline \\
+            \medskip
+           Delete (Paper's) & - & 63.41  \\ \medskip
+           Copy (Paper's) & - & 63.97 \\ \medskip
+           Switch (Paper's) & - & 64.66 \\ 
+           \hline\hline \\ 
+           \medskip
+           Delete (Our's) & 62.15 & 63.87 \\ \medskip
+           Copy (Our's) & 63.32 & 64.39 \\ \medskip
+           Switch (Our's) & 64.34 & 64.28 \\ 
+            \hline	
+        \end{tabular}
+        \vspace{0.015\textheight}
+        \caption{Performance of CodeBERT with different augmentations (in-batch + query-rewritten) in COCLR on code search.}
+        \label{tab:overall}
+    \end{table}
+    
+    \item Code components results:
+    \begin{itemize}
+        \item Test hyperparameters: 
+        \begin{itemize}
+            \item max\_seq\_length: 200
+            \item per\_gpu\_retrieval\_batch\_size: 67
+        \end{itemize}
+        
+        \item Train hyperparameters: 
+        \begin{itemize}
+            \item max\_seq\_length: 160
+            \item per\_gpu\_train\_batch\_size: 8
+            \item per\_gpu\_retrieval\_batch\_size: 67
+        \end{itemize}
+    \end{itemize}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c c c}
+            \hline \\
+            \textbf{Augmentations} & \textbf{Our's (MRR)} & \textbf{Paper's (MRR)} \\
+            \hline\hline \\
+            \medskip
+            Complete code & 64.28 & 64.66 \\ \medskip
+            w/o header & 60.06 & 62.01 \\ \medskip
+            w/o body & 58.31 & 59.11\\ \medskip
+            w/o documentation & 57.57 & 58.54 \\ \medskip
+            w/o header \& body & 51.67 & 52.89 \\ \medskip
+            w/o header \& documentation & 42.16 & 43.35
+ \\  \medskip
+            w/o body \& documentation  & 43.47 & 42.71 \\
+            \hline	
+        \end{tabular}
+        \vspace{0.015\textheight}
+        \caption{Performance of CoCLR-incorporated CodeBERT trained and tested with different code components on code search.}
+        \label{tab:overall}
+    \end{table}
+    
+    \item Reducing the max sequence length resulted in the poor performance of the model.
+    
+    \item Changing batch size had little impact on the performance of the model with requiring less RAM but it increased the running time. In addition, in case of the question-answering task, it resulted in worsening the accuracy.
+   
+\end{itemize}
+
+\subsection*{What was easy}
+
+\begin{itemize}
+    \item Good README file and step-by-step instructions on how to use the code they provided in their \href{https://github.com/Jun-jie-Huang/CoCLR}{GitHub repository}.
+    
+    \item Running commands as a bash file which helps automate the testing and training process.
+
+    \item They used command-line arguments to change the training and testing conditions/inputs which reduce unintentional mistakes and confusion.
+    
+    \item Providing log file for each command which gives good information about running process.
+\end{itemize}
+
+
+\subsection*{What was difficult}
+\begin{itemize}
+    \item Our resource was not as powerful as their resource since we had to change hyper-parameters such as decreasing the batch\_size in order to train the models. Specifically, we got poorer results for the question-answering task.
+
+    \item Not enough instruction to write the command with the correct argument to get the first four rows of results in table 6 which just uses the IBA or QRA methods.
+
+    \item The confusion between the names of the code and their corresponding part in the paper. For example, the term vanilla model was used as the base model which is equal to the term CodeBERT trained with CSN+CoSQA.
+    
+    \item  Difficulty to download the datasets since they were on google drive. Wget/curl command was not available to download these materials.
+\end{itemize}
+
+\subsection*{Conclusion}
+In conclusion, we achieved quite the same results as the original paper. Our reproducibility study concurs with their main claim in most cases. More precisely, except in one case that is for CodeBERT model on code question answering we obtained poorer results due to modifications to some hyperparameters to make the code executable and model trainable on our hardware. For all the other cases what we achieved was similar to what was reported by paper. 
+
+\newpage
+\bibliographystyle{acm}
+\bibliography{reference}
+
+% \textit{\textbf{The following section formatting is \textbf{optional}, you can also define sections as you deem fit.
+% \\
+% Focus on what future researchers or practitioners would find useful for reproducing or building upon the paper you choose.}}
+% \section{Introduction}
+% To DO
+% \\
+% A few sentences placing the work in high-level context. Limit it to a few paragraphs at most; your report is on reproducing a piece of work, you don’t have to motivate that work.
+
+% \section{Scope of reproducibility}
+% To DO
+% \\
+% \label{sec:claims}
+
+% Introduce the specific setting or problem addressed in this work, and list the main claims from the original paper. Think of this as writing out the main contributions of the original paper. Each claim should be relatively concise; some papers may not clearly list their claims, and one must formulate them in terms of the presented experiments. (For those familiar, these claims are roughly the scientific hypotheses evaluated in the original work.)
+
+% A claim should be something that can be supported or rejected by your data. An example is, ``Finetuning pretrained BERT on dataset X will have higher accuracy than an LSTM trained with GloVe embeddings.''
+% This is concise, and is something that can be supported by experiments.
+% An example of a claim that is too vague, which can't be supported by experiments, is ``Contextual embedding models have shown strong performance on a number of tasks. We will run experiments evaluating two types of contextual embedding models on datasets X, Y, and Z."
+
+% This section roughly tells a reader what to expect in the rest of the report. Clearly itemize the claims you are testing:
+% \begin{itemize}
+%     \item Claim 1
+%     \item Claim 2
+%     \item Claim 3
+% \end{itemize}
+
+% Each experiment in Section~\ref{sec:results} will support (at least) one of these claims, so a reader of your report should be able to separately understand the \emph{claims} and the \emph{evidence} that supports them.
+
+% %\jdcomment{To organizers: I asked my students to connect the main claims and the experiments that supported them. For example, in this list above they could have ``Claim 1, which is supported by Experiment 1 in Figure 1.'' The benefit was that this caused the students to think about what their experiments were showing (as opposed to blindly rerunning each experiment and not considering how it fit into the overall story), but honestly it seemed hard for the students to understand what I was asking for.}
+
+% \section{Methodology}
+% To DO
+% \\
+% Explain your approach - did you use the author's code, or did you aim to re-implement the approach from the description in the paper? Summarize the resources (code, documentation, GPUs) that you used.
+
+% \subsection{Model descriptions}
+% To DO
+% \\
+% Include a description of each model or algorithm used. Be sure to list the type of model, the number of parameters, and other relevant info (e.g. if it's pretrained). 
+
+% \subsection{Datasets}
+% To DO
+% \\
+% For each dataset include 1) relevant statistics such as the number of examples and label distributions, 2) details of train / dev / test splits, 3) an explanation of any preprocessing done, and 4) a link to download the data (if available).
+
+% \subsection{Hyperparameters}
+% To DO
+% \\
+% Describe how the hyperparameter values were set. If there was a hyperparameter search done, be sure to include the range of hyperparameters searched over, the method used to search (e.g. manual search, random search, Bayesian optimization, etc.), and the best hyperparameters found. Include the number of total experiments (e.g. hyperparameter trials). You can also include all results from that search (not just the best-found results).
+
+% \subsection{Experimental setup and code}
+% To DO
+% \\
+% Include a description of how the experiments were set up that's clear enough a reader could replicate the setup. 
+% Include a description of the specific measure used to evaluate the experiments (e.g. accuracy, precision@K, BLEU score, etc.). 
+% Provide a link to your code.
+
+% \subsection{Computational requirements}
+% To DO
+% \\
+% Include a description of the hardware used, such as the GPU or CPU the experiments were run on. 
+% For each model, include a measure of the average runtime (e.g. average time to predict labels for a given validation set with a particular batch size).
+% For each experiment, include the total computational requirements (e.g. the total GPU hours spent).
+% (Note: you'll likely have to record this as you run your experiments, so it's better to think about it ahead of time). Generally, consider the perspective of a reader who wants to use the approach described in the paper --- list what they would find useful.
+
+% \section{Results}
+% To DO
+% \\
+% \label{sec:results}
+% Start with a high-level overview of your results. Do your results support the main claims of the original paper? Keep this section as factual and precise as possible, reserve your judgement and discussion points for the next "Discussion" section. 
+
+
+% \subsection{Results reproducing original paper}
+% To DO
+% \\
+% For each experiment, say 1) which claim in Section~\ref{sec:claims} it supports, and 2) if it successfully reproduced the associated experiment in the original paper. 
+% For example, an experiment training and evaluating a model on a dataset may support a claim that that model outperforms some baseline.
+% Logically group related results into sections. 
+
+% \subsubsection{Result 1}
+
+% \subsubsection{Result 2}
+
+% \subsection{Results beyond original paper}
+% Often papers don't include enough information to fully specify their experiments, so some additional experimentation may be necessary. For example, it might be the case that batch size was not specified, and so different batch sizes need to be evaluated to reproduce the original results. Include the results of any additional experiments here. Note: this won't be necessary for all reproductions.
+ 
+% \subsubsection{Additional Result 1}
+% \subsubsection{Additional Result 2}
+
+% \section{Discussion}
+% To DO
+
+% Give your judgement on if your experimental results support the claims of the paper. Discuss the strengths and weaknesses of your approach - perhaps you didn't have time to run all the experiments, or perhaps you did additional experiments that further strengthened the claims in the paper.
+
+% \subsection{What was easy}
+% Give your judgement of what was easy to reproduce. Perhaps the author's code is clearly written and easy to run, so it was easy to verify the majority of original claims. Or, the explanation in the paper was really easy to follow and put into code. 
+
+% Be careful not to give sweeping generalizations. Something that is easy for you might be difficult to others. Put what was easy in context and explain why it was easy (e.g. code had extensive API documentation and a lot of examples that matched experiments in papers). 
+
+% \subsection{What was difficult}
+% To DO
+% \\
+% List part of the reproduction study that took more time than you anticipated or you felt were difficult. 
+
+% Be careful to put your discussion in context. For example, don't say "the maths was difficult to follow", say "the math requires advanced knowledge of calculus to follow". 
+
+% \subsection{Communication with original authors}
+% To DO
+% \\
+% Document the extent of (or lack of) communication with the original authors. To make sure the reproducibility report is a fair assessment of the original research we recommend getting in touch with the original authors. You can ask authors specific questions, or if you don't have any questions you can send them the full report to get their feedback before it gets published. 
+
+
+
+% \section*{References}
+% To DO
+
+
+\end{document}
