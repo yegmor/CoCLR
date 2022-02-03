@@ -1,0 +1,9 @@
+#bash TrainCodeQuestionAnswering_VanillaModel.bash
+#bash TestCodeQuestionAnswering_VanillaModel.bash
+#bash TrainCodeQuestionAnswering_CoCLR.bash
+#bash TestCodeQuestionAnswering_CoCLR.bash
+bash TrainCodeSearch_VanillaModel.bash
+bash TestCodeSearch_VanillaModel.bash
+bash TrainCodeSearch_CoCLR.bash
+bash TestCodeSearch_CoCLR.bash
+bash AblationWithModelComponent_AllMode.bash
