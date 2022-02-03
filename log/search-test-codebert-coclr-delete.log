@@ -1,0 +1,76 @@
+02/03/2022 10:25:57 - WARNING - __main__ -   Process rank: -1, device: cuda, n_gpu: 1, distributed training: False, 16-bits training: False
+02/03/2022 10:25:58 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/microsoft/codebert-base/config.json from cache at /home/server/.cache/torch/transformers/1b62771d5f5169b34713b0af1ab85d80e11f7b1812fbf3ee7d03a866c5f58e72.06eb31f0a63f4e8a136733ccac422f0abf9ffa87c3e61104b57e7075a704d008
+02/03/2022 10:25:58 - INFO - transformers.configuration_utils -   Model config RobertaConfig {
+  "architectures": [
+    "RobertaModel"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": 0,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 2,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+02/03/2022 10:25:58 - INFO - transformers.tokenization_utils -   Model name 'microsoft/codebert-base' not found in model shortcut name list (roberta-base, roberta-large, roberta-large-mnli, distilroberta-base, roberta-base-openai-detector, roberta-large-openai-detector). Assuming 'microsoft/codebert-base' is a path, a model identifier, or url to a directory containing tokenizer files.
+02/03/2022 10:26:02 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/microsoft/codebert-base/vocab.json from cache at /home/server/.cache/torch/transformers/aca4dbdf4f074d4e071c2664901fec33c8aa69c35aa0101bc669ed4b44d1f6c3.6a4061e8fc00057d21d80413635a86fdcf55b6e7594ad9e25257d2f99a02f4be
+02/03/2022 10:26:02 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/microsoft/codebert-base/merges.txt from cache at /home/server/.cache/torch/transformers/779a2f0c38ba2ff65d9a3ee23e58db9568f44a20865c412365e3dc540f01743f.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+02/03/2022 10:26:02 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/microsoft/codebert-base/added_tokens.json from cache at None
+02/03/2022 10:26:02 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/microsoft/codebert-base/special_tokens_map.json from cache at /home/server/.cache/torch/transformers/5a191080da4f00859b5d3d29529f57894583e00ab07b7c940d65c33db4b25d4d.16f949018cf247a2ea7465a74ca9a292212875e5fd72f969e0807011e7f192e4
+02/03/2022 10:26:02 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/microsoft/codebert-base/tokenizer_config.json from cache at /home/server/.cache/torch/transformers/1b4723c5fb2d933e11c399450ea233aaf33f093b5cbef3ec864624735380e490.70b5dbd5d3b9b4c9bfb3d1f6464291ff52f6a8d96358899aa3834e173b45092d
+02/03/2022 10:26:03 - INFO - transformers.modeling_utils -   loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/microsoft/codebert-base/pytorch_model.bin from cache at /home/server/.cache/torch/transformers/3416309b564f60f87c1bc2ce8d8a82bb7c1e825b241c816482f750b48a5cdc26.96251fe4478bac0cff9de8ae3201e5847cee59aebbcafdfe6b2c361f9398b349
+02/03/2022 10:26:06 - INFO - __main__ -   Training/evaluation parameters Namespace(adam_epsilon=1e-08, augment=False, cache_dir='', checkpoint_path=None, code_type='code', config_name='', data_dir='./data/search/', device=device(type='cuda'), do_eval=False, do_lower_case=False, do_retrieval=True, do_train=False, encoder_name_or_path='microsoft/codebert-base', eval_all_checkpoints=False, eval_data_file=None, evaluate_during_training=False, fp16=False, fp16_opt_level='O1', gradient_accumulation_steps=1, learning_rate=5e-05, local_rank=-1, logging_steps=50, max_grad_norm=1.0, max_seq_length=200, max_steps=-1, model_type='roberta', mrr_rank=100, n_gpu=1, no_cuda=False, num_train_epochs=3, output_dir='./model/search_codebert_delete/checkpoint-best-mrr/', overwrite_cache=False, overwrite_output_dir=False, per_gpu_eval_batch_size=8, per_gpu_retrieval_batch_size=67, per_gpu_train_batch_size=8, pred_model_dir='./model/search_codebert_delete/checkpoint-best-mrr', retrieval_code_base='code_idx_map.txt', retrieval_predictions_output='./model/search_codebert_delete/retrieval_outputs.txt', save_steps=0, save_total_limit=None, seed=45, server_ip='', server_port='', start_epoch=0, start_step=0, test_data_file='cosqa-retrieval-test-500.json', test_predictions_output=None, test_result_dir='test_results.tsv', tokenizer_name='', train_data_file=None, warmup_steps=0, weight_decay=0.0)
+02/03/2022 10:26:06 - INFO - __main__ -   ***** Retrieval results *****
+02/03/2022 10:26:06 - INFO - __main__ -   ./model/search_codebert_delete/checkpoint-best-mrr/pytorch_model.bin
+02/03/2022 10:26:09 - INFO - transformers.tokenization_utils -   Model name './model/search_codebert_delete/checkpoint-best-mrr/' not found in model shortcut name list (roberta-base, roberta-large, roberta-large-mnli, distilroberta-base, roberta-base-openai-detector, roberta-large-openai-detector). Assuming './model/search_codebert_delete/checkpoint-best-mrr/' is a path, a model identifier, or url to a directory containing tokenizer files.
+02/03/2022 10:26:09 - INFO - transformers.tokenization_utils -   Didn't find file ./model/search_codebert_delete/checkpoint-best-mrr/added_tokens.json. We won't load it.
+02/03/2022 10:26:09 - INFO - transformers.tokenization_utils -   loading file ./model/search_codebert_delete/checkpoint-best-mrr/vocab.json
+02/03/2022 10:26:09 - INFO - transformers.tokenization_utils -   loading file ./model/search_codebert_delete/checkpoint-best-mrr/merges.txt
+02/03/2022 10:26:09 - INFO - transformers.tokenization_utils -   loading file None
+02/03/2022 10:26:09 - INFO - transformers.tokenization_utils -   loading file ./model/search_codebert_delete/checkpoint-best-mrr/special_tokens_map.json
+02/03/2022 10:26:09 - INFO - transformers.tokenization_utils -   loading file ./model/search_codebert_delete/checkpoint-best-mrr/tokenizer_config.json
+02/03/2022 10:26:13 - INFO - __main__ -   ***** Running Test *****
+02/03/2022 10:26:13 - INFO - __main__ -     Num examples = 6767
+02/03/2022 10:26:13 - INFO - __main__ -     Batch size = 67
+torch.Size([6267, 768])
+torch.Size([500, 768])
+  0%|          | 0/6267 [00:00<?, ?it/s]  1%|          | 69/6267 [00:00<00:09, 686.85it/s]  3%|▎         | 163/6267 [00:00<00:07, 834.99it/s]  4%|▍         | 260/6267 [00:00<00:06, 892.11it/s]  6%|▌         | 354/6267 [00:00<00:06, 908.85it/s]  7%|▋         | 450/6267 [00:00<00:06, 924.17it/s]  9%|▊         | 546/6267 [00:00<00:06, 932.96it/s] 10%|█         | 647/6267 [00:00<00:05, 956.60it/s] 12%|█▏        | 748/6267 [00:00<00:05, 972.65it/s] 14%|█▎        | 850/6267 [00:00<00:05, 985.04it/s] 15%|█▌        | 952/6267 [00:01<00:05, 992.79it/s] 17%|█▋        | 1053/6267 [00:01<00:05, 997.04it/s] 18%|█▊        | 1153/6267 [00:01<00:05, 979.90it/s] 20%|██        | 1254/6267 [00:01<00:05, 987.12it/s] 22%|██▏       | 1355/6267 [00:01<00:04, 992.55it/s] 23%|██▎       | 1457/6267 [00:01<00:04, 998.21it/s] 25%|██▍       | 1557/6267 [00:01<00:04, 992.76it/s] 26%|██▋       | 1657/6267 [00:01<00:04, 992.30it/s] 28%|██▊       | 1757/6267 [00:01<00:04, 979.72it/s] 30%|██▉       | 1856/6267 [00:01<00:04, 971.65it/s] 31%|███       | 1954/6267 [00:02<00:04, 964.18it/s] 33%|███▎      | 2051/6267 [00:02<00:04, 960.49it/s] 34%|███▍      | 2148/6267 [00:02<00:04, 959.16it/s] 36%|███▌      | 2244/6267 [00:02<00:04, 952.98it/s] 37%|███▋      | 2340/6267 [00:02<00:04, 949.82it/s] 39%|███▉      | 2435/6267 [00:02<00:04, 947.63it/s] 40%|████      | 2530/6267 [00:02<00:03, 947.87it/s] 42%|████▏     | 2625/6267 [00:02<00:03, 946.69it/s] 43%|████▎     | 2722/6267 [00:02<00:03, 952.73it/s] 45%|████▍     | 2818/6267 [00:02<00:03, 953.85it/s] 46%|████▋     | 2914/6267 [00:03<00:03, 948.21it/s] 48%|████▊     | 3009/6267 [00:03<00:03, 948.14it/s] 50%|████▉     | 3104/6267 [00:03<00:03, 942.72it/s] 51%|█████     | 3199/6267 [00:03<00:03, 941.32it/s] 53%|█████▎    | 3294/6267 [00:03<00:03, 940.19it/s] 54%|█████▍    | 3389/6267 [00:03<00:03, 942.45it/s] 56%|█████▌    | 3484/6267 [00:03<00:02, 943.02it/s] 57%|█████▋    | 3579/6267 [00:03<00:02, 941.00it/s] 59%|█████▊    | 3674/6267 [00:03<00:02, 938.40it/s] 60%|██████    | 3775/6267 [00:03<00:02, 957.29it/s] 62%|██████▏   | 3875/6267 [00:04<00:02, 968.30it/s] 63%|██████▎   | 3975/6267 [00:04<00:02, 977.18it/s] 65%|██████▌   | 4075/6267 [00:04<00:02, 982.64it/s] 67%|██████▋   | 4175/6267 [00:04<00:02, 986.36it/s] 68%|██████▊   | 4275/6267 [00:04<00:02, 989.49it/s] 70%|██████▉   | 4375/6267 [00:04<00:01, 991.84it/s] 71%|███████▏  | 4475/6267 [00:04<00:01, 992.57it/s] 73%|███████▎  | 4575/6267 [00:04<00:01, 993.86it/s] 75%|███████▍  | 4675/6267 [00:04<00:01, 992.50it/s] 76%|███████▌  | 4775/6267 [00:04<00:01, 991.12it/s] 78%|███████▊  | 4876/6267 [00:05<00:01, 994.23it/s] 79%|███████▉  | 4976/6267 [00:05<00:01, 995.46it/s] 81%|████████  | 5076/6267 [00:05<00:01, 995.25it/s] 83%|████████▎ | 5176/6267 [00:05<00:01, 991.33it/s] 84%|████████▍ | 5276/6267 [00:05<00:01, 982.40it/s] 86%|████████▌ | 5377/6267 [00:05<00:00, 987.89it/s] 87%|████████▋ | 5479/6267 [00:05<00:00, 995.04it/s] 89%|████████▉ | 5579/6267 [00:05<00:00, 984.34it/s] 91%|█████████ | 5678/6267 [00:05<00:00, 973.89it/s] 92%|█████████▏| 5776/6267 [00:05<00:00, 973.28it/s] 94%|█████████▍| 5876/6267 [00:06<00:00, 978.65it/s] 95%|█████████▌| 5974/6267 [00:06<00:00, 974.09it/s] 97%|█████████▋| 6072/6267 [00:06<00:00, 975.54it/s] 98%|█████████▊| 6170/6267 [00:06<00:00, 972.56it/s]100%|██████████| 6267/6267 [00:06<00:00, 967.59it/s]
+02/03/2022 10:27:56 - INFO - __main__ -     Final test MRR 0.638715355988411
+02/03/2022 10:27:57 - INFO - __main__ -   Test Model From: ./model/search_codebert_delete/checkpoint-best-mrr/pytorch_model.bin

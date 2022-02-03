@@ -1,0 +1,80 @@
+02/02/2022 15:21:12 - WARNING - __main__ -   Process rank: -1, device: cuda, n_gpu: 1, distributed training: False, 16-bits training: False
+02/02/2022 15:21:13 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/microsoft/codebert-base/config.json from cache at /home/server/.cache/torch/transformers/1b62771d5f5169b34713b0af1ab85d80e11f7b1812fbf3ee7d03a866c5f58e72.06eb31f0a63f4e8a136733ccac422f0abf9ffa87c3e61104b57e7075a704d008
+02/02/2022 15:21:13 - INFO - transformers.configuration_utils -   Model config RobertaConfig {
+  "architectures": [
+    "RobertaModel"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": 0,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 2,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+02/02/2022 15:21:13 - INFO - transformers.tokenization_utils -   Model name 'microsoft/codebert-base' not found in model shortcut name list (roberta-base, roberta-large, roberta-large-mnli, distilroberta-base, roberta-base-openai-detector, roberta-large-openai-detector). Assuming 'microsoft/codebert-base' is a path, a model identifier, or url to a directory containing tokenizer files.
+02/02/2022 15:21:17 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/microsoft/codebert-base/vocab.json from cache at /home/server/.cache/torch/transformers/aca4dbdf4f074d4e071c2664901fec33c8aa69c35aa0101bc669ed4b44d1f6c3.6a4061e8fc00057d21d80413635a86fdcf55b6e7594ad9e25257d2f99a02f4be
+02/02/2022 15:21:17 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/microsoft/codebert-base/merges.txt from cache at /home/server/.cache/torch/transformers/779a2f0c38ba2ff65d9a3ee23e58db9568f44a20865c412365e3dc540f01743f.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+02/02/2022 15:21:17 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/microsoft/codebert-base/added_tokens.json from cache at None
+02/02/2022 15:21:17 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/microsoft/codebert-base/special_tokens_map.json from cache at /home/server/.cache/torch/transformers/5a191080da4f00859b5d3d29529f57894583e00ab07b7c940d65c33db4b25d4d.16f949018cf247a2ea7465a74ca9a292212875e5fd72f969e0807011e7f192e4
+02/02/2022 15:21:17 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/microsoft/codebert-base/tokenizer_config.json from cache at /home/server/.cache/torch/transformers/1b4723c5fb2d933e11c399450ea233aaf33f093b5cbef3ec864624735380e490.70b5dbd5d3b9b4c9bfb3d1f6464291ff52f6a8d96358899aa3834e173b45092d
+02/02/2022 15:21:18 - INFO - transformers.modeling_utils -   loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/microsoft/codebert-base/pytorch_model.bin from cache at /home/server/.cache/torch/transformers/3416309b564f60f87c1bc2ce8d8a82bb7c1e825b241c816482f750b48a5cdc26.96251fe4478bac0cff9de8ae3201e5847cee59aebbcafdfe6b2c361f9398b349
+02/02/2022 15:21:21 - INFO - __main__ -   Training/evaluation parameters Namespace(adam_epsilon=1e-08, augment=True, cache_dir='', checkpoint_path=None, code_type='code', config_name='', data_dir='./data/qa', device=device(type='cuda'), do_eval=False, do_lower_case=False, do_test=True, do_train=False, encoder_name_or_path='microsoft/codebert-base', eval_all_checkpoints=False, eval_data_file=None, evaluate_during_training=False, fp16=False, fp16_opt_level='O1', gradient_accumulation_steps=1, learning_rate=5e-05, local_rank=-1, logging_steps=50, max_grad_norm=1.0, max_seq_length=200, max_steps=-1, model_type='roberta', n_gpu=1, no_cuda=False, num_train_epochs=3, output_dir='./model/qa_codebert/checkpoint-best-aver/', overwrite_cache=False, overwrite_output_dir=False, per_gpu_eval_batch_size=2, per_gpu_train_batch_size=8, pred_model_dir='./model/qa_codebert/checkpoint-best-aver/', save_steps=0, save_total_limit=None, seed=42, server_ip='', server_port='', start_epoch=0, start_step=0, test_data_file='test_webquery.json', test_predictions_output='./model/qa_codebert/webquery_predictions.txt', test_result_dir='test_results.tsv', tokenizer_name='', train_data_file=None, warmup_steps=5, weight_decay=0.0)
+02/02/2022 15:21:21 - INFO - __main__ -   ***** Testing results *****
+02/02/2022 15:21:24 - INFO - transformers.tokenization_utils -   Model name './model/qa_codebert/checkpoint-best-aver/' not found in model shortcut name list (roberta-base, roberta-large, roberta-large-mnli, distilroberta-base, roberta-base-openai-detector, roberta-large-openai-detector). Assuming './model/qa_codebert/checkpoint-best-aver/' is a path, a model identifier, or url to a directory containing tokenizer files.
+02/02/2022 15:21:24 - INFO - transformers.tokenization_utils -   Didn't find file ./model/qa_codebert/checkpoint-best-aver/added_tokens.json. We won't load it.
+02/02/2022 15:21:24 - INFO - transformers.tokenization_utils -   loading file ./model/qa_codebert/checkpoint-best-aver/vocab.json
+02/02/2022 15:21:24 - INFO - transformers.tokenization_utils -   loading file ./model/qa_codebert/checkpoint-best-aver/merges.txt
+02/02/2022 15:21:24 - INFO - transformers.tokenization_utils -   loading file None
+02/02/2022 15:21:24 - INFO - transformers.tokenization_utils -   loading file ./model/qa_codebert/checkpoint-best-aver/special_tokens_map.json
+02/02/2022 15:21:24 - INFO - transformers.tokenization_utils -   loading file ./model/qa_codebert/checkpoint-best-aver/tokenizer_config.json
+02/02/2022 15:21:25 - INFO - __main__ -   ***** Running Test *****
+02/02/2022 15:21:25 - INFO - __main__ -     Num examples = 1046
+02/02/2022 15:21:25 - INFO - __main__ -     Batch size = 2
+/home/server/.local/lib/python3.8/site-packages/sklearn/metrics/_classification.py:1318: UndefinedMetricWarning: Recall is ill-defined and being set to 0.0 due to no true samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+02/02/2022 15:21:41 - INFO - __main__ -     Final test acc = 0.46749521988527726
+02/02/2022 15:21:41 - INFO - __main__ -     Final test precision = 0.0
+02/02/2022 15:21:41 - INFO - __main__ -     Final test recall = 0.0
+02/02/2022 15:21:41 - INFO - __main__ -     Final test f1 = 0.0
+02/02/2022 15:21:41 - INFO - __main__ -     Final test acc_and_f1 = 0.23374760994263863
+02/02/2022 15:21:41 - INFO - __main__ -     Final test eval_loss = nan
+02/02/2022 15:21:41 - INFO - __main__ -     ********************
+02/02/2022 15:21:41 - INFO - __main__ -   Test Model From: ./model/qa_codebert/checkpoint-best-aver/pytorch_model.bin
